@@ -1,0 +1,57 @@
+.columns{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1rem;
+  align-items: flex-start;
+}
+.column{
+  background-color: #eee;
+}
+.column-header{
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+
+  transition: background-color 0.2s ease;
+
+}
+.column-header:hover{
+  background-color: rgb(227, 252, 239);
+}
+.column-title{
+  text-align: center;
+  padding: 1rem;
+}
+.inner-list{
+  padding: 1rem;
+}
+.card-quote{
+  border-radius: 2px;
+    border: 2px solid transparent;
+    border-color: transparent;
+    background-color: #FFFFFF;
+    box-shadow: none;
+    padding: 8px;
+    min-height: 40px;
+    margin-bottom: 8px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #091E42;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.gray{
+  background-color: #eee;
+}
+.is-active{
+  background-color: rgb(227, 252, 239);
+}
+.is-draggingFrom{
+  background-color:lightpink;
+}
+.is-draggingOver{
+  background-color: crimson;
+}
