@@ -1,0 +1,16 @@
+.dashboard {
+	height: 100vh;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+}
+.main-container {
+	overflow-x: hidden;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	flex: 1 1 0%;
+	background-color: #f5f6fa;
+	padding: 4rem 3rem;
+}
