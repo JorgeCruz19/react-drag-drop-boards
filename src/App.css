@@ -10,6 +10,8 @@
 .column {
 	background-color: #eee;
 	margin-bottom: 1rem;
+	border-radius: 8px;
+	overflow: hidden;
 }
 .column-header {
 	border-top-left-radius: 2px;

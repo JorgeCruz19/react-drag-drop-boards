@@ -24,6 +24,7 @@ const Column = ({ title, quotes, index }) => {
 							backgroundColor: snapshot.isDragging
 								? "rgb(227, 252, 239)"
 								: null,
+							paddingBottom: 8,
 						}}
 						listId={title}
 						listType="QUOTE"

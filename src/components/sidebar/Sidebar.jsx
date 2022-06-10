@@ -20,9 +20,11 @@ const Sidebar = () => {
 							Dashboard
 						</Link>
 					</li>
-					<li className={`sidebar-item ${pathname == "/kanban" && "isActive"}`}>
+					<li
+						className={`sidebar-item ${pathname == "/projects" && "isActive"}`}
+					>
 						<MdFolderOpen />
-						<NavLink to="/kanban" className="sidebar-link">
+						<NavLink to="/projects" className="sidebar-link">
 							Projects
 						</NavLink>
 					</li>
