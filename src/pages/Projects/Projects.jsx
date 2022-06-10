@@ -1,7 +1,9 @@
 import "./projects.css";
 import { MdAddBox } from "react-icons/md";
 import openModal from "../../utils/openModal";
+
 const Projects = () => {
+
 	const handleOpenModal = () => {
 		openModal();
 	};
