@@ -16,7 +16,7 @@
 .modal-inner-container {
 	background-color: #fff;
 	border-radius: 8px;
-	width: 40%;
+	width: 90%;
 	padding: 1rem;
 	position: relative;
 	z-index: 9999;
@@ -42,4 +42,15 @@
 }
 .modal-close:hover {
 	background-color: #eaebed;
+}
+
+@media screen and (min-width: 768px) {
+	.modal-inner-container {
+		width: 50%;
+	}
+}
+@media screen and (min-width: 1200px) {
+	.modal-inner-container {
+		width: 40%;
+	}
 }

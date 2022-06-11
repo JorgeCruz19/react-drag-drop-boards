@@ -39,6 +39,23 @@
 	font-size: 0.8rem;
 	margin-bottom: 1.2rem;
 }
+.card-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.card-edit {
+	font-size: 1.4rem;
+	padding: 0.2rem;
+	background-color: #787486;
+	color: #fff;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+.card-edit:hover {
+	background-color: #6b6878;
+}
 .card-date {
 	color: #787486;
 	font-size: 0.8rem;

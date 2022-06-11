@@ -4,6 +4,7 @@
 	flex-direction: column;
 	padding: 2rem 0;
 	width: 16rem;
+	background-color: #fff;
 }
 .sidebar-logo {
 	font-weight: 700;

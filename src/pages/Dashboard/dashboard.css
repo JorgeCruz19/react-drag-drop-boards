@@ -3,14 +3,16 @@
 	width: 100%;
 	overflow: hidden;
 	display: flex;
+	background-color: #f5f6fa;
 }
 .main-container {
+	max-width: 1400px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 	position: relative;
 	flex: 1 1 0%;
-	background-color: #f5f6fa;
+	margin: 0 auto;
 	padding: 4rem 3rem;
 }
