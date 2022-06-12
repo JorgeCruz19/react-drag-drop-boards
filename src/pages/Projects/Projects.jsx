@@ -1,113 +1,49 @@
-import { useEffect } from "react";
-import {
-	collection,
-	getDocs,
-	onSnapshot,
-	query,
-	orderBy,
-} from "firebase/firestore";
-import db from "../../firebase.config";
+import { useEffect, useState } from "react";
+import { MdAddBox, MdModeEditOutline, MdDelete } from "react-icons/md";
+import openModal from "../../utils/openModal";
+import { formatDateTime } from "../../utils/formatDates";
+import {getAllProjects, editProject, deleteProject } from "../../services/projects"
 
 import "./projects.css";
-import { MdAddBox, MdModeEditOutline } from "react-icons/md";
-import openModal from "../../utils/openModal";
 
 const Projects = () => {
+	const [boards, setBoards] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
+	
 	useEffect(() => {
 		let isMounted = true;
-		getAllProjects();
+		getAllProjects(setBoards);
 		return () => {
 			isMounted = false;
 		};
 	}, []);
 
-	const getAllProjects = async () => {
-		const q = query(collection(db, "projects"), orderBy("date", "asc"));
-		onSnapshot(q, (snapShot) => {
-			const a = snapShot.docs.map((doc) => {
-				return {
-					id: doc.id,
-					...doc.data(),
-				};
-			});
-			console.log(a);
-		});
-		/* const querySnapshot = await getDocs(collection(db, "projects"));
-		querySnapshot.forEach((item) => {
-			console.log(item.data());
-		}); */
+	const handleOpenModal = (isEdit, id) => {
+		openModal(isEdit, id);
 	};
-	const handleOpenModal = () => {
-		openModal();
-	};
-
+	
 	return (
 		<>
 			<div className="project-container">
 				<h1 className="project-title">Projects</h1>
-				<MdAddBox onClick={handleOpenModal} className="project-add" />
+				<MdAddBox onClick={() => handleOpenModal(false)} className="project-add" />
 			</div>
 			<div className="card-container">
-				<div className="card">
-					<h2 className="card-title">Mobile App</h2>
-					<p className="card-description">
-						Aplicación mobile para llevar el control de lotificaciones{" "}
-					</p>
-					<div className="card-footer">
-						<span className="card-date">9 jun 2022</span>
-						<MdModeEditOutline className="card-edit" />
+				{boards.map(board => (
+					<div key={board.id} className="card">
+						<h2 className="card-title">{board.name}</h2>
+						<p className="card-description">
+							{board.description}
+						</p>
+						<div className="card-footer">
+							<span className="card-date">{formatDateTime(board.date.seconds)}</span>
+							<div>
+								<MdModeEditOutline onClick={() => handleOpenModal(true, board.id)} className="card-edit" />
+								<MdDelete onClick={() => deleteProject(board.id)} className="card-delete"/>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div className="card">
-					<h2 className="card-title">Mobile App</h2>
-					<p className="card-description">
-						Aplicación mobile para llevar el control de lotificaciones{" "}
-					</p>
-					<div className="card-footer">
-						<span className="card-date">9 jun 2022</span>
-						<MdModeEditOutline className="card-edit" />
-					</div>
-				</div>
-				<div className="card">
-					<h2 className="card-title">Mobile App</h2>
-					<p className="card-description">
-						Aplicación mobile para llevar el control de lotificaciones{" "}
-					</p>
-					<div className="card-footer">
-						<span className="card-date">9 jun 2022</span>
-						<MdModeEditOutline className="card-edit" />
-					</div>
-				</div>
-				<div className="card">
-					<h2 className="card-title">Mobile App</h2>
-					<p className="card-description">
-						Aplicación mobile para llevar el control de lotificaciones{" "}
-					</p>
-					<div className="card-footer">
-						<span className="card-date">9 jun 2022</span>
-						<MdModeEditOutline className="card-edit" />
-					</div>
-				</div>
-				<div className="card">
-					<h2 className="card-title">Mobile App</h2>
-					<p className="card-description">
-						Aplicación mobile para llevar el control de lotificaciones{" "}
-					</p>
-					<div className="card-footer">
-						<span className="card-date">9 jun 2022</span>
-						<MdModeEditOutline className="card-edit" />
-					</div>
-				</div>
-				<div className="card">
-					<h2 className="card-title">Mobile App</h2>
-					<p className="card-description">
-						Aplicación mobile para llevar el control de lotificaciones{" "}
-					</p>
-					<div className="card-footer">
-						<span className="card-date">9 jun 2022</span>
-						<MdModeEditOutline className="card-edit" />
-					</div>
-				</div>
+				))}
 			</div>
 		</>
 	);

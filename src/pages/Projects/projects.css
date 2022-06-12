@@ -27,6 +27,11 @@
 	background-color: #fff;
 	padding: 1.2rem;
 	border-radius: 16px;
+	cursor: pointer;
+	transition: box-shadow 0.3s ease;
+}
+.card:hover{
+	box-shadow: 0 3px 5px rgba(0,0,0,0.2);
 }
 .card-title {
 	font-size: 1.1rem;
@@ -44,17 +49,24 @@
 	justify-content: space-between;
 	align-items: center;
 }
-.card-edit {
+.card-edit,.card-delete {
 	font-size: 1.4rem;
 	padding: 0.2rem;
 	background-color: #787486;
 	color: #fff;
 	border-radius: 8px;
+	margin-right: 0.2rem;
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
+.card-delete {
+	background-color: #dc3545;
+}
 .card-edit:hover {
 	background-color: #6b6878;
+}
+.card-delete:hover {
+	background-color: #c53241;
 }
 .card-date {
 	color: #787486;
