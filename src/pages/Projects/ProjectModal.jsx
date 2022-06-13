@@ -5,19 +5,22 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 
-import {formatDateToday} from "../../utils/formatDates"
+import { formatDateToday } from "../../utils/formatDates";
 import Modal from "../../components/Modal/Modal";
 import db from "../../firebase.config";
 
 const projectSchema = yup.object({
 	name: yup.string().required(),
 	description: yup.string().required(),
-	date: yup.date().required().nullable().default(() => new Date().toLocaleDateString()),
+	date: yup
+		.date()
+		.required()
+		.nullable()
+		.default(() => new Date().toLocaleDateString()),
 });
 
 const ProjectModal = ({ title, root, isEdit, id }) => {
 	const [isLoading, setIsLoading] = useState(false);
-
 
 	const {
 		register,
@@ -29,17 +32,23 @@ const ProjectModal = ({ title, root, isEdit, id }) => {
 		resolver: yupResolver(projectSchema),
 	});
 
-	isEdit && useEffect(() => {
-		setValuesForm()
-	}, []);
+	isEdit &&
+		useEffect(() => {
+			setValuesForm();
+		}, []);
 
 	const setValuesForm = async () => {
 		const fields = ["name", "description", "date"];
 		const docRef = doc(db, "projects", id);
 		const docSnap = await getDoc(docRef);
-		const fieldsProject = {...docSnap.data(), date: new Date(docSnap.data().date.seconds * 1000).toISOString().substring(0, 10)};
+		const fieldsProject = {
+			...docSnap.data(),
+			date: new Date(docSnap.data().date.seconds * 1000)
+				.toISOString()
+				.substring(0, 10),
+		};
 		fields.forEach((field) => setValue(field, fieldsProject[field]));
-	}
+	};
 
 	const onSubmit = async (data) => {
 		setIsLoading(true);
@@ -52,8 +61,7 @@ const ProjectModal = ({ title, root, isEdit, id }) => {
 			});
 			reset({ name: "", description: "", date: "" });
 			toast.success("¡Project saved!");
-		}
-		else{
+		} else {
 			await updateDoc(doc(db, "projects", id), {
 				name,
 				description,
@@ -65,66 +73,68 @@ const ProjectModal = ({ title, root, isEdit, id }) => {
 	};
 
 	return (
-		<Modal title={title} root={root}>
-			<form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-				<div className="form-content">
-					<label htmlFor="name" className="form-label">
-						Nombre:{" "}
-					</label>
-					<input
-						id="name"
-						{...register("name")}
-						type="text"
-						className="form-control"
-						placeholder="Ingrese el nombre"
-					/>
-					{errors.name && (
-						<small className="invalid-feedback">{errors.name?.message}</small>
-					)}
-				</div>
-				<div className="form-content">
-					<label htmlFor="description" className="form-label">
-						Descripcion:{" "}
-					</label>
-					<input
-						id="description"
-						{...register("description")}
-						type="text"
-						className="form-control"
-						placeholder="Ingrese la descripción"
-					/>
-					{errors.description && (
-						<small className="invalid-feedback">
-							{errors.description?.message}
-						</small>
-					)}
-				</div>
-				<div className="form-content">
-					<label htmlFor="date" className="form-label">
-						Fecha:{" "}
-					</label>
-					<input
-						id="date"
-						{...register("date")}
-						type="date"
-						className="form-control"
-						defaultValue={formatDateToday()}
-						min={formatDateToday()}
-					/>
-					{errors.date && (
-						<small className="invalid-feedback">{errors.date?.message}</small>
-					)}
-				</div>
-				<button
-					type="submit"
-					className="btn-submit"
-					disabled={isLoading ? true : false}
-				>
-					{isEdit ? "Actualizar" : "Guardar"} 
-				</button>
-				<ToastContainer />
-			</form>
-		</Modal>
+		<>
+			<Modal title={title} root={root}>
+				<form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+					<div className="form-content">
+						<label htmlFor="name" className="form-label">
+							Nombre:{" "}
+						</label>
+						<input
+							id="name"
+							{...register("name")}
+							type="text"
+							className="form-control"
+							placeholder="Ingrese el nombre"
+						/>
+						{errors.name && (
+							<small className="invalid-feedback">{errors.name?.message}</small>
+						)}
+					</div>
+					<div className="form-content">
+						<label htmlFor="description" className="form-label">
+							Descripcion:{" "}
+						</label>
+						<input
+							id="description"
+							{...register("description")}
+							type="text"
+							className="form-control"
+							placeholder="Ingrese la descripción"
+						/>
+						{errors.description && (
+							<small className="invalid-feedback">
+								{errors.description?.message}
+							</small>
+						)}
+					</div>
+					<div className="form-content">
+						<label htmlFor="date" className="form-label">
+							Fecha:{" "}
+						</label>
+						<input
+							id="date"
+							{...register("date")}
+							type="date"
+							className="form-control"
+							defaultValue={formatDateToday()}
+							min={formatDateToday()}
+						/>
+						{errors.date && (
+							<small className="invalid-feedback">{errors.date?.message}</small>
+						)}
+					</div>
+					<button
+						type="submit"
+						className="btn-submit"
+						disabled={isLoading ? true : false}
+					>
+						{isEdit ? "Actualizar" : "Guardar"}
+					</button>
+				</form>
+			</Modal>
+			<ToastContainer />
+		</>
 	);
 };
 
