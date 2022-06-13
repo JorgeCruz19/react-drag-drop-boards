@@ -27,8 +27,9 @@ const dropIn = {
 const Modal = ({ children, title, root }) => {
 	const ref = useRef(null);
 	const handleCloseModal = () => {
-		unmountComponentAtNode(root);
-		document.querySelector("#modal").remove();
+			document.body.style.overflow = "auto";document.body.style.overflow = "auto";
+			unmountComponentAtNode(root);
+			document.querySelector("#modal").remove();
 	};
 
 	return (

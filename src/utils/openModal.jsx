@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 const openModal = (isEdit, id) => {
 	const Modal = lazy(() => import("../pages/Projects/ProjectModal"));
+	document.body.style.overflow = "hidden";
 	const modalDiv = document.createElement("div");
 	modalDiv.id = "modal";
 	document.body.appendChild(modalDiv);
