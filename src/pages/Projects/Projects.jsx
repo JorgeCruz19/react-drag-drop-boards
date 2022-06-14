@@ -22,8 +22,8 @@ const Projects = () => {
 		};
 	}, []);
 
-	const handleOpenModal = (isEdit, id) => {
-		openModal(isEdit, id);
+	const handleOpenModal = (type, id) => {
+		openModal(type, id);
 	};
 
 	return (
@@ -46,7 +46,7 @@ const Projects = () => {
 							</span>
 							<div>
 								<MdModeEditOutline
-									onClick={() => handleOpenModal(true, board.id)}
+									onClick={() => handleOpenModal("edit", board.id)}
 									className="card-edit"
 								/>
 								<MdDelete

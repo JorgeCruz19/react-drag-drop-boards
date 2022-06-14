@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
-const openModal = (isEdit, id) => {
+const openModal = (type, id) => {
 	const Modal = lazy(() => import("../pages/Projects/ProjectModal"));
 	document.body.style.overflow = "hidden";
 	const modalDiv = document.createElement("div");
@@ -9,7 +9,12 @@ const openModal = (isEdit, id) => {
 
 	ReactDOM.render(
 		<Suspense fallback={<p>Loading.</p>}>
-			<Modal root={modalDiv} title={isEdit ? "Editar Proyecto" : "Registro de Proyecto"} isEdit={isEdit} id={id} />
+			<Modal
+				root={modalDiv}
+				title={type == "edit" ? "Editar Proyecto" : "Registro de Proyecto"}
+				type={type}
+				id={id}
+			/>
 		</Suspense>,
 		modalDiv
 	);

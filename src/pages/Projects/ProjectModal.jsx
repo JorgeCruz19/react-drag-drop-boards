@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { collection, addDoc, updateDoc, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 
+import { addProject, editProject } from "../../services/projects";
 import { formatDateToday } from "../../utils/formatDates";
 import Modal from "../../components/Modal/Modal";
 import db from "../../firebase.config";
@@ -19,7 +20,7 @@ const projectSchema = yup.object({
 		.default(() => new Date().toLocaleDateString()),
 });
 
-const ProjectModal = ({ title, root, isEdit, id }) => {
+const ProjectModal = ({ title, root, type, id }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const {
@@ -32,7 +33,7 @@ const ProjectModal = ({ title, root, isEdit, id }) => {
 		resolver: yupResolver(projectSchema),
 	});
 
-	isEdit &&
+	type == "edit" &&
 		useEffect(() => {
 			setValuesForm();
 		}, []);
@@ -53,20 +54,12 @@ const ProjectModal = ({ title, root, isEdit, id }) => {
 	const onSubmit = async (data) => {
 		setIsLoading(true);
 		const { name, description, date } = data;
-		if (!isEdit) {
-			await addDoc(collection(db, "projects"), {
-				name,
-				description,
-				date,
-			});
+		if (type != "edit") {
+			addProject(data);
 			reset({ name: "", description: "", date: "" });
 			toast.success("¡Project saved!");
 		} else {
-			await updateDoc(doc(db, "projects", id), {
-				name,
-				description,
-				date,
-			});
+			editProject(data, id);
 			toast.success("¡Project updated!");
 		}
 		setIsLoading(false);
@@ -129,7 +122,7 @@ const ProjectModal = ({ title, root, isEdit, id }) => {
 						className="btn-submit"
 						disabled={isLoading ? true : false}
 					>
-						{isEdit ? "Actualizar" : "Guardar"}
+						{type == "edit" ? "Actualizar" : "Guardar"}
 					</button>
 				</form>
 			</Modal>
