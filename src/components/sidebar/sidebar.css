@@ -5,6 +5,10 @@
 	padding: 2rem 0;
 	width: 16rem;
 	background-color: #fff;
+	flex-shrink: 0%;
+	position: static;
+	transition: all 0.2s ease-in-out;
+	z-index: 40;
 }
 .sidebar-logo {
 	font-weight: 700;
@@ -69,4 +73,37 @@
 	color: #a6b0b6;
 	font-weight: 400;
 	transition: background-color 0.3s ease, color 0.3s ease;
+}
+.siderbar-backdrop {
+	display: none;
+	z-index: auto;
+	pointer-events: none;
+}
+
+@media screen and (max-width: 1024px) {
+	.sidebar {
+		transform: translateX(-16rem);
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.siderbar-backdrop {
+		background-color: rgba(15, 23, 42, 0.3);
+		z-index: 40;
+		position: fixed;
+		opacity: 0;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		display: block;
+	}
+	.is-show-backdrop {
+		opacity: 1;
+		pointer-events: auto;
+	}
+	.is-show {
+		transform: translateX(0) !important;
+	}
 }

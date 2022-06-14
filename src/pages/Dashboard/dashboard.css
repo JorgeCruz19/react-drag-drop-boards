@@ -6,13 +6,21 @@
 	background-color: #f5f6fa;
 }
 .main-container {
-	max-width: 1400px;
-	overflow-x: hidden;
-	overflow-y: auto;
-	display: flex;
-	flex-direction: column;
 	position: relative;
+	flex-direction: column;
+	display: flex;
 	flex: 1 1 0%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.inner-container {
 	margin: 0 auto;
+	max-width: 1400px;
+	width: 100%;
 	padding: 4rem 3rem;
+}
+@media screen and (max-width: 480px) {
+	.inner-container {
+		padding: 2rem 1rem;
+	}
 }
