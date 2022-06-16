@@ -7,10 +7,8 @@ import "./modal.css";
 const dropIn = {
 	hidden: {
 		opacity: 0,
-		transform: "scale(0.9)",
 	},
 	visible: {
-		transform: "scale(1)",
 		opacity: 1,
 		transition: {
 			duration: 0.1,
@@ -20,16 +18,16 @@ const dropIn = {
 		},
 	},
 	exit: {
-		transform: "scale(0.9)",
 		opacity: 0,
 	},
 };
 const Modal = ({ children, title, root }) => {
 	const ref = useRef(null);
 	const handleCloseModal = () => {
-			document.body.style.overflow = "auto";document.body.style.overflow = "auto";
-			unmountComponentAtNode(root);
-			document.querySelector("#modal").remove();
+		document.body.style.overflow = "auto";
+		document.body.style.overflow = "auto";
+		unmountComponentAtNode(root);
+		document.querySelector("#modal").remove();
 	};
 
 	return (

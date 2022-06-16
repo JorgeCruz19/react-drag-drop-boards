@@ -27,11 +27,14 @@
 	background-color: #fff;
 	padding: 1.2rem;
 	border-radius: 16px;
-	cursor: pointer;
 	transition: box-shadow 0.3s ease;
 }
-.card:hover{
-	box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+.card:hover {
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+.card-header {
+	display: flex;
+	justify-content: space-between;
 }
 .card-title {
 	font-size: 1.1rem;
@@ -49,7 +52,8 @@
 	justify-content: space-between;
 	align-items: center;
 }
-.card-edit,.card-delete {
+.card-edit,
+.card-delete {
 	font-size: 1.4rem;
 	padding: 0.2rem;
 	background-color: #787486;

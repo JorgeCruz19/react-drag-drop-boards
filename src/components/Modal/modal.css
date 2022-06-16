@@ -9,7 +9,7 @@
 	position: fixed;
 	right: 0;
 	top: 0;
-	transition: all 0.3s;
+	transition: all 0.1s;
 	width: 100%;
 	z-index: 999;
 }

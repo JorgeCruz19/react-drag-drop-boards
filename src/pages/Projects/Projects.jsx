@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import { MdAddBox, MdModeEditOutline, MdDelete } from "react-icons/md";
 import openModal from "../../utils/openModal";
 import { formatDateTime } from "../../utils/formatDates";
-import {
-	getAllProjects,
-	editProject,
-	deleteProject,
-} from "../../services/projects";
+import { getAllProjects, deleteProject } from "../../services/projects";
+import Tooltip from "../../components/Tooltip/Tooltip";
 
 import "./projects.css";
 
@@ -38,13 +35,20 @@ const Projects = () => {
 			<div className="card-container">
 				{boards.map((board) => (
 					<div key={board.id} className="card">
-						<h2 className="card-title">{board.name}</h2>
+						<div className="card-header">
+							<h2 className="card-title">{board.name}</h2>
+							<Tooltip
+								id={board.id}
+								handleOpenModal={handleOpenModal}
+								deleteProject={deleteProject}
+							/>
+						</div>
 						<p className="card-description">{board.description}</p>
 						<div className="card-footer">
 							<span className="card-date">
 								{formatDateTime(board.date.seconds)}
 							</span>
-							<div>
+							{/* <div>
 								<MdModeEditOutline
 									onClick={() => handleOpenModal("edit", board.id)}
 									className="card-edit"
@@ -53,7 +57,7 @@ const Projects = () => {
 									onClick={() => deleteProject(board.id)}
 									className="card-delete"
 								/>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				))}
