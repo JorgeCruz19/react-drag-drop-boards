@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { MdAddBox, MdModeEditOutline, MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { MdAddBox } from "react-icons/md";
 import openModal from "../../utils/openModal";
 import { formatDateTime } from "../../utils/formatDates";
 import { getAllProjects, deleteProject } from "../../services/projects";
@@ -48,16 +49,9 @@ const Projects = () => {
 							<span className="card-date">
 								{formatDateTime(board.date.seconds)}
 							</span>
-							{/* <div>
-								<MdModeEditOutline
-									onClick={() => handleOpenModal("edit", board.id)}
-									className="card-edit"
-								/>
-								<MdDelete
-									onClick={() => deleteProject(board.id)}
-									className="card-delete"
-								/>
-							</div> */}
+							<Link to={`/projects/${board.id}`} className="card-link">
+								Ver más
+							</Link>
 						</div>
 					</div>
 				))}
