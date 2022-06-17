@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Loading from "../components/sidebar/Loader/Loading";
 import Dashboard from "../pages/Dashboard/Dashboard";
 const Projects = lazy(() => import("../pages/Projects/Projects"));
+const Board = lazy(() => import("../pages/Board/Board"));
 /* const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard")); */
 
 const AppRouter = () => {
@@ -12,10 +13,18 @@ const AppRouter = () => {
 			<Routes>
 				<Route path="/" element={<Dashboard />}>
 					<Route
-						path="/projects"
+						path="projects"
 						element={
 							<Suspense fallback={<Loading />}>
 								<Projects />
+							</Suspense>
+						}
+					/>
+					<Route
+						path="projects/:idBoard"
+						element={
+							<Suspense fallback={<Loading />}>
+								<Board />
 							</Suspense>
 						}
 					/>

@@ -47,7 +47,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 						</li>
 						<li
 							className={`sidebar-item ${
-								pathname == "/projects" && "isActive"
+								pathname.includes("/projects") && "isActive"
 							}`}
 						>
 							<MdFolderOpen />
