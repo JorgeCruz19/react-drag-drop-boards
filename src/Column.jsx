@@ -1,35 +1,27 @@
 import { Draggable } from "react-beautiful-dnd";
-import QuoteList from "./QuoteList";
+import CardList from "./CardList";
+import AddButton from "./components/Boards/AddButton";
+import { MdMoreHoriz } from "react-icons/md";
 
-const Column = ({ title, quotes, index }) => {
+const Column = ({ list, index }) => {
 	return (
-		<Draggable draggableId={title} index={index}>
+		<Draggable draggableId={list.id} index={index}>
 			{(provided, snapshot) => (
-				<div
-					className="column"
-					ref={provided.innerRef}
-					{...provided.draggableProps}
-				>
-					<div
-						className={`column-header ${
-							snapshot.isDragging ? "is-active" : null
-						}`}
-					>
-						<h4 {...provided.dragHandleProps} className="column-title">
-							{title}
-						</h4>
+				<div className="column" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+					<div className={`column-header ${snapshot.isDragging ? "is-active" : ""}`}>
+						<h4 className="column-title">{list.title}</h4>
+						<MdMoreHoriz className="column-options" />
 					</div>
-					<QuoteList
+					<CardList
 						style={{
-							backgroundColor: snapshot.isDragging
-								? "rgb(227, 252, 239)"
-								: null,
+							backgroundColor: snapshot.isDragging ? "rgb(227, 252, 239)" : "",
 							paddingBottom: 8,
+							marginBottom: 10,
 						}}
-						listId={title}
-						listType="QUOTE"
-						quotes={quotes}
+						listType="CARD"
+						list={list}
 					/>
+					<AddButton list={list} type={"card"} />
 				</div>
 			)}
 		</Draggable>

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, serverTimestamp } from "firebase/firestore";
 
 const firebaseConfig = {
 	apiKey: `${import.meta.env.FIREBASE_KEY}`,
@@ -13,4 +13,4 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-export default db;
+export { db, serverTimestamp };

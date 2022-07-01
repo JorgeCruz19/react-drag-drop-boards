@@ -8,7 +8,7 @@ import {
 	updateDoc,
 	doc,
 } from "firebase/firestore";
-import db from "../firebase.config";
+import { db } from "../firebase.config";
 
 const getAllProjects = async (setBoards) => {
 	const q = query(collection(db, "projects"), orderBy("date", "desc"));

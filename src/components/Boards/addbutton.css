@@ -1,0 +1,21 @@
+.add-button-container {
+	padding: 0 0.6rem;
+}
+.add-button-board {
+	background-color: #dae4fd;
+	border-radius: 8px;
+	padding: 0.6rem 0.6rem;
+	color: #2f80ed;
+	width: 100%;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: 500;
+	font-size: 1rem;
+	transition: background-color 0.3s ease;
+}
+.add-button-board:hover {
+	background-color: #c8d7fb;
+	color: #2c78db;
+}

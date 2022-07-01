@@ -27,28 +27,21 @@ const Projects = () => {
 	return (
 		<>
 			<div className="project-container">
-				<h1 className="project-title">Projects</h1>
-				<MdAddBox
-					onClick={() => handleOpenModal(false)}
-					className="project-add"
-				/>
+				<h1 className="project-title">Projects boards</h1>
+				<button onClick={() => handleOpenModal(false)} className="project-add">
+					<MdAddBox />
+				</button>
 			</div>
 			<div className="card-container">
 				{boards.map((board) => (
 					<div key={board.id} className="card">
 						<div className="card-header">
 							<h2 className="card-title">{board.name}</h2>
-							<Tooltip
-								id={board.id}
-								handleOpenModal={handleOpenModal}
-								deleteProject={deleteProject}
-							/>
+							<Tooltip id={board.id} handleOpenModal={handleOpenModal} deleteProject={deleteProject} />
 						</div>
 						<p className="card-description">{board.description}</p>
 						<div className="card-footer">
-							<span className="card-date">
-								{formatDateTime(board.date.seconds)}
-							</span>
+							<span className="card-date">{formatDateTime(board.date.seconds)}</span>
 							<Link to={`/projects/${board.id}`} className="card-link">
 								Ver más
 							</Link>
