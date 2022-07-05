@@ -8,7 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { addProject, editProject } from "../../services/projects";
 import { formatDateToday } from "../../utils/formatDates";
 import Modal from "../../components/Modal/Modal";
-import db from "../../firebase.config";
+import { db } from "../../firebase.config";
 
 const projectSchema = yup.object({
 	name: yup.string().required(),
@@ -44,9 +44,7 @@ const ProjectModal = ({ title, root, type, id }) => {
 		const docSnap = await getDoc(docRef);
 		const fieldsProject = {
 			...docSnap.data(),
-			date: new Date(docSnap.data().date.seconds * 1000)
-				.toISOString()
-				.substring(0, 10),
+			date: new Date(docSnap.data().date.seconds * 1000).toISOString().substring(0, 10),
 		};
 		fields.forEach((field) => setValue(field, fieldsProject[field]));
 	};
@@ -73,55 +71,24 @@ const ProjectModal = ({ title, root, type, id }) => {
 						<label htmlFor="name" className="form-label">
 							Nombre:{" "}
 						</label>
-						<input
-							id="name"
-							{...register("name")}
-							type="text"
-							className="form-control"
-							placeholder="Ingrese el nombre"
-						/>
-						{errors.name && (
-							<small className="invalid-feedback">{errors.name?.message}</small>
-						)}
+						<input id="name" {...register("name")} type="text" className="form-control" placeholder="Ingrese el nombre" />
+						{errors.name && <small className="invalid-feedback">{errors.name?.message}</small>}
 					</div>
 					<div className="form-content">
 						<label htmlFor="description" className="form-label">
 							Descripcion:{" "}
 						</label>
-						<input
-							id="description"
-							{...register("description")}
-							type="text"
-							className="form-control"
-							placeholder="Ingrese la descripción"
-						/>
-						{errors.description && (
-							<small className="invalid-feedback">
-								{errors.description?.message}
-							</small>
-						)}
+						<input id="description" {...register("description")} type="text" className="form-control" placeholder="Ingrese la descripción" />
+						{errors.description && <small className="invalid-feedback">{errors.description?.message}</small>}
 					</div>
 					<div className="form-content">
 						<label htmlFor="date" className="form-label">
 							Fecha:{" "}
 						</label>
-						<input
-							id="date"
-							{...register("date")}
-							type="date"
-							className="form-control"
-							defaultValue={formatDateToday()}
-							min={formatDateToday()}
-						/>
-						{errors.date && (
-							<small className="invalid-feedback">{errors.date?.message}</small>
-						)}
+						<input id="date" {...register("date")} type="date" className="form-control" defaultValue={formatDateToday()} min={formatDateToday()} />
+						{errors.date && <small className="invalid-feedback">{errors.date?.message}</small>}
 					</div>
-					<button
-						type="submit"
-						className="btn-submit"
-						disabled={isLoading ? true : false}
-					>
+					<button type="submit" className="btn-submit" disabled={isLoading ? true : false}>
 						{type == "edit" ? "Actualizar" : "Guardar"}
 					</button>
 				</form>

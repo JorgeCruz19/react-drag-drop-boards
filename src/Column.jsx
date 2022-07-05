@@ -1,7 +1,7 @@
 import { Draggable } from "react-beautiful-dnd";
 import CardList from "./CardList";
 import AddButton from "./components/Boards/AddButton";
-import { MdMoreHoriz } from "react-icons/md";
+import Title from "./components/Title/Title";
 
 const Column = ({ list, index }) => {
 	return (
@@ -9,8 +9,7 @@ const Column = ({ list, index }) => {
 			{(provided, snapshot) => (
 				<div className="column" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
 					<div className={`column-header ${snapshot.isDragging ? "is-active" : ""}`}>
-						<h4 className="column-title">{list.title}</h4>
-						<MdMoreHoriz className="column-options" />
+						<Title title={list.title} listId={list.id} />
 					</div>
 					<CardList
 						style={{

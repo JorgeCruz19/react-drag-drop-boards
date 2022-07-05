@@ -33,13 +33,14 @@
 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 .card-header {
+	align-items: center;
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 0.5rem;
 }
 .card-title {
 	font-size: 1.1rem;
 	color: #0d062d;
-	margin-bottom: 0.5rem;
 	font-weight: 700;
 }
 .card-description {
@@ -84,8 +85,7 @@
 	outline: 0;
 	padding: 0.375rem 0.75rem;
 	overflow: hidden;
-	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	vertical-align: center;
 }
 .card-link:hover {

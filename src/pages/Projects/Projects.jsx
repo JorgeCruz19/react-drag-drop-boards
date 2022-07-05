@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { MdAddBox } from "react-icons/md";
+import { MdAddBox, MdModeEditOutline, MdDelete } from "react-icons/md";
 import openModal from "../../utils/openModal";
 import { formatDateTime } from "../../utils/formatDates";
 import { getAllProjects, deleteProject } from "../../services/projects";
@@ -37,7 +37,16 @@ const Projects = () => {
 					<div key={board.id} className="card">
 						<div className="card-header">
 							<h2 className="card-title">{board.name}</h2>
-							<Tooltip id={board.id} handleOpenModal={handleOpenModal} deleteProject={deleteProject} />
+							<Tooltip id={board.id}>
+								<button className="tooltip-edit" onClick={() => handleOpenModal("edit", board.id)}>
+									<MdModeEditOutline className="tooltip-edit-icon" />
+									Edit
+								</button>
+								<button className="tooltip-delete" onClick={() => deleteProject(board.id)}>
+									<MdDelete className="tooltip-delete-icon" />
+									Delete
+								</button>
+							</Tooltip>
 						</div>
 						<p className="card-description">{board.description}</p>
 						<div className="card-footer">
