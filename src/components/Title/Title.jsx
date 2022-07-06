@@ -1,13 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import Tooltip from "../Tooltip/Tooltip";
-const Title = ({ title, listId }) => {
-	const [open, setOpen] = useState(false);
-	const [openOptions, setOpenOptions] = useState(false);
-	const [newTitle, setNewTitle] = useState(title);
+import { updateColumnTitle } from "../../services/board";
 
+const Title = ({ title, columnId }) => {
+	const projectId = window.location.pathname.split("/")[2];
+	const [open, setOpen] = useState(false);
+	const [newTitle, setNewTitle] = useState(title);
 	const handleOnBlur = () => {
-		/* updateListTitle(newTitle, listId); */
+		updateColumnTitle(newTitle, projectId, columnId);
 		setOpen(!open);
 	};
 	return (
@@ -34,7 +35,7 @@ const Title = ({ title, listId }) => {
 					<h4 onClick={() => setOpen(!open)} className="column-title">
 						{title}
 					</h4>
-					<Tooltip id={listId}>
+					<Tooltip id={columnId}>
 						<button
 							className="tooltip-edit"
 							onClick={() => {

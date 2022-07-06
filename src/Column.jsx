@@ -3,13 +3,13 @@ import CardList from "./CardList";
 import AddButton from "./components/Boards/AddButton";
 import Title from "./components/Title/Title";
 
-const Column = ({ list, index }) => {
+const Column = ({ column, index }) => {
 	return (
-		<Draggable draggableId={list.id} index={index}>
+		<Draggable draggableId={column.id} index={index}>
 			{(provided, snapshot) => (
 				<div className="column" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
 					<div className={`column-header ${snapshot.isDragging ? "is-active" : ""}`}>
-						<Title title={list.title} listId={list.id} />
+						<Title title={column.title} columnId={column.id} />
 					</div>
 					<CardList
 						style={{
@@ -18,9 +18,9 @@ const Column = ({ list, index }) => {
 							marginBottom: 10,
 						}}
 						listType="CARD"
-						list={list}
+						list={column}
 					/>
-					<AddButton list={list} type={"card"} />
+					<AddButton list={column} type={"card"} />
 				</div>
 			)}
 		</Draggable>

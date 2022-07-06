@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MdAddBox, MdModeEditOutline, MdDelete } from "react-icons/md";
-import openModal from "../../utils/openModal";
+import { openModalProject } from "../../utils/openModal";
 import { formatDateTime } from "../../utils/formatDates";
 import { getAllProjects, deleteProject } from "../../services/projects";
 import Tooltip from "../../components/Tooltip/Tooltip";
@@ -21,7 +21,7 @@ const Projects = () => {
 	}, []);
 
 	const handleOpenModal = (type, id) => {
-		openModal(type, id);
+		openModalProject(type, id);
 	};
 
 	return (

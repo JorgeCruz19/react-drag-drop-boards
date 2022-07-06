@@ -4,11 +4,18 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { data, data2 } from "../../data";
 import Column from "../../Column";
 import AddButton from "../../components/Boards/AddButton";
+import { useEffect } from "react";
+import { getAllBoardOfProject } from "../../services/board";
 
 const Board = () => {
-	const params = useParams();
+	const { idBoard: projectId } = useParams();
 	const [ordered, setOrdered] = useState(data2.columns);
-	const [columns, setColumns] = useState(data2.columns);
+	const [columns, setColumns] = useState([]);
+
+	useEffect(() => {
+		getAllBoardOfProject(projectId, setColumns);
+	}, []);
+
 	return (
 		<div className="App">
 			<DragDropContext onDragEnd={null}>
@@ -16,7 +23,7 @@ const Board = () => {
 					{(provided) => (
 						<div className="columns" {...provided.droppableProps} ref={provided.innerRef}>
 							{columns.map((column, index) => (
-								<Column key={column.id} index={index} list={column} />
+								<Column key={column.id} index={index} column={column} />
 							))}
 							{<AddButton type={"column"} />}
 							{provided.placeholder}
