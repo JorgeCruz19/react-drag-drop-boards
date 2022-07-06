@@ -5,40 +5,41 @@ import { MdOutlineClose } from "react-icons/md";
 import "./modal.css";
 
 const dropIn = {
-	hidden: {
-		opacity: 0,
-	},
-	visible: {
-		opacity: 1,
-		transition: {
-			duration: 0.1,
-			type: "spring",
-			damping: 25,
-			stiffness: 500,
-		},
-	},
-	exit: {
-		opacity: 0,
-	},
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.1,
+      type: "spring",
+      damping: 25,
+      stiffness: 500,
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
 };
 const Modal = ({ children, title, root }) => {
-	const ref = useRef(null);
-	const handleCloseModal = () => {
-		document.body.style.overflow = "auto";
-		document.body.style.overflow = "auto";
-		unmountComponentAtNode(root);
-		document.querySelector("#modal").remove();
-	};
+  const ref = useRef(null);
+  const handleCloseModal = () => {
+    document.body.style.overflow = "auto";
+    document.body.style.overflow = "auto";
+    unmountComponentAtNode(root);
+    document.querySelector("#modal").remove();
+  };
 
-	return (
-		<AnimatePresence>
-			<motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				exit={{ opacity: 0 }}
-				ref={ref}
-				className="modal-container"
-			>
+  return (
+    <AnimatePresence>
+			<div className="modal">
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					ref={ref}
+					className="modal-container"
+					onClick={handleCloseModal}></motion.div>
 				<motion.div
 					variants={dropIn}
 					initial="hidden"
@@ -54,9 +55,9 @@ const Modal = ({ children, title, root }) => {
 					</div>
 					<div className="modal-content">{children}</div>
 				</motion.div>
-			</motion.div>
-		</AnimatePresence>
-	);
+			</div>
+    </AnimatePresence>
+  );
 };
 
 export default Modal;
