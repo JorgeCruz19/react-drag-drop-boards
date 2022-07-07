@@ -1,5 +1,6 @@
 import { addDoc, arrayUnion, collection, deleteDoc, doc, onSnapshot, orderBy, query, updateDoc } from "firebase/firestore";
 import { db, timestamp } from "../firebase.config";
+import { v4 as uuidv4 } from "uuid";
 
 const getAllBoardOfProject = (projectId, setLists) => {
 	const q = query(collection(db, "projects", projectId, "board"), orderBy("timestamp", "asc"));
@@ -33,4 +34,24 @@ const updateColumnTitle = async (title, projectId, columnId) => {
 	});
 };
 
-export { getAllBoardOfProject, updateColumnTitle, addColumn };
+const addCard = async (title, projectId, columnId) => {
+	if (!title) return;
+
+	const card = {
+		id: uuidv4(),
+		title,
+	};
+
+	const columnRef = doc(db, "projects", projectId, "board", columnId);
+	await updateDoc(columnRef, {
+		cards: arrayUnion(card),
+	});
+};
+
+const removeCard = async (index, projectId, column, cardId) => {
+	const columnRef = doc(db, "projects", projectId, "board", column.id);
+	await updateDoc(columnRef, {
+		cards: column.cards.filter((card) => card.id !== cardId),
+	});
+};
+export { getAllBoardOfProject, updateColumnTitle, addColumn, addCard, removeCard };

@@ -7,7 +7,7 @@ const Column = ({ column, index }) => {
 	return (
 		<Draggable draggableId={column.id} index={index}>
 			{(provided, snapshot) => (
-				<div className="column" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+				<article className="column" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
 					<div className={`column-header ${snapshot.isDragging ? "is-active" : ""}`}>
 						<Title title={column.title} columnId={column.id} />
 					</div>
@@ -21,7 +21,7 @@ const Column = ({ column, index }) => {
 						list={column}
 					/>
 					<AddButton list={column} type={"card"} />
-				</div>
+				</article>
 			)}
 		</Draggable>
 	);

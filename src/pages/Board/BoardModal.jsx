@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 
 import Modal from "../../components/Modal/Modal";
-import { addColumn } from "../../services/board";
+import { addCard, addColumn } from "../../services/board";
 
 const BoardSchema = yup.object({
 	name: yup.string().required(),
@@ -18,7 +18,6 @@ const BoardModal = ({ title, root, type, id }) => {
 		register,
 		handleSubmit,
 		reset,
-		setValue,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(BoardSchema),
@@ -28,9 +27,9 @@ const BoardModal = ({ title, root, type, id }) => {
 		setIsLoading(true);
 		const { name } = data;
 		if (type != "column") {
-			addProject(data);
-			reset({ name: "", description: "", date: "" });
-			toast.success("¡Project saved!");
+			addCard(name, projectId, id);
+			reset({ name: "" });
+			toast.success("¡Card saved!");
 		} else {
 			await addColumn(name, projectId);
 			toast.success("¡Added column!");

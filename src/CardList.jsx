@@ -1,28 +1,5 @@
-import { Droppable, Draggable } from "react-beautiful-dnd";
-
-const CardItem = ({ dropProvided, cards }) => {
-	return (
-		<div className="inner-list">
-			<div style={{ minHeight: 250 }} ref={dropProvided.innerRef}>
-				{cards.cards.map((card, index) => (
-					<Draggable key={card.id} draggableId={card.id} index={index} shouldRespectForceTouch={false}>
-						{(provided, dragSnapshot) => (
-							<p
-								ref={provided.innerRef}
-								{...provided.draggableProps}
-								{...provided.dragHandleProps}
-								className={`card-quote ${dragSnapshot.isDragging && "border"}`}
-							>
-								{card.title}
-							</p>
-						)}
-					</Draggable>
-				))}
-				{dropProvided.placeholder}
-			</div>
-		</div>
-	);
-};
+import { Droppable } from "react-beautiful-dnd";
+import CardItem from "./CardItem";
 
 const CardList = ({ style, listType, list }) => {
 	return (
