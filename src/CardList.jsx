@@ -1,7 +1,7 @@
 import { Droppable } from "react-beautiful-dnd";
 import CardItem from "./CardItem";
 
-const CardList = ({ style, listType, list }) => {
+const CardList = ({ style, listType, list, columnId }) => {
 	return (
 		<Droppable droppableId={list.id} type={listType}>
 			{(dropProvided, dropSnapshot) => (
@@ -10,7 +10,7 @@ const CardList = ({ style, listType, list }) => {
 					className={`${dropSnapshot.isDraggingOver ? "is-draggingOver" : Boolean(dropSnapshot.draggingFromThisWith) ? "is-draggingFrom" : "gray"}`}
 					style={style}
 				>
-					<CardItem cards={list} dropProvided={dropProvided} />
+					<CardItem cards={list} columnId={columnId} dropProvided={dropProvided} />
 				</div>
 			)}
 		</Droppable>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import Tooltip from "../Tooltip/Tooltip";
-import { updateColumnTitle } from "../../services/board";
+import { deleteColumn, updateColumnTitle } from "../../services/board";
 
 const Title = ({ title, columnId }) => {
 	const projectId = window.location.pathname.split("/")[2];
@@ -45,7 +45,7 @@ const Title = ({ title, columnId }) => {
 							<MdModeEditOutline className="tooltip-edit-icon" />
 							Edit
 						</button>
-						<button className="tooltip-delete">
+						<button className="tooltip-delete" onClick={() => deleteColumn(projectId, columnId)}>
 							<MdDelete className="tooltip-delete-icon" />
 							Delete
 						</button>
