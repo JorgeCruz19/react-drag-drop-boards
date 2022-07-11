@@ -28,12 +28,12 @@ const BoardModal = ({ title, root, type, id }) => {
 		const { name } = data;
 		if (type != "column") {
 			addCard(name, projectId, id);
-			reset({ name: "" });
 			toast.success("¡Card saved!");
 		} else {
 			await addColumn(name, projectId);
 			toast.success("¡Added column!");
 		}
+		reset({ name: "" });
 		setIsLoading(false);
 	};
 

@@ -45,7 +45,13 @@ const Title = ({ title, columnId }) => {
 							<MdModeEditOutline className="tooltip-edit-icon" />
 							Edit
 						</button>
-						<button className="tooltip-delete" onClick={() => deleteColumn(projectId, columnId)}>
+						<button
+							className="tooltip-delete"
+							onClick={(e) => {
+								e.stopPropagation();
+								deleteColumn(projectId, columnId);
+							}}
+						>
 							<MdDelete className="tooltip-delete-icon" />
 							Delete
 						</button>

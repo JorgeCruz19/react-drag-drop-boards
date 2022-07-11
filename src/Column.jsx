@@ -5,7 +5,7 @@ import Title from "./components/Title/Title";
 
 const Column = ({ column, index }) => {
 	return (
-		<Draggable draggableId={column.id} index={index}>
+		<Draggable draggableId={column?.id} index={index}>
 			{(provided, snapshot) => (
 				<article className="column" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
 					<div className={`column-header ${snapshot.isDragging ? "is-active" : ""}`}>
@@ -21,7 +21,7 @@ const Column = ({ column, index }) => {
 								}`}
 								style={{
 									backgroundColor: snapshot.isDragging ? "rgb(227, 252, 239)" : "",
-									paddingBottom: 8,
+									padding: "0.6rem",
 									marginBottom: 10,
 								}}
 							>

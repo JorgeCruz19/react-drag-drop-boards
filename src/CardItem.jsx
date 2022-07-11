@@ -17,35 +17,41 @@ const CardItem = ({ column, card, index }) => {
 	return (
 		<Draggable draggableId={card.id} index={index} shouldRespectForceTouch={false}>
 			{(provided, dragSnapshot) => (
-				<div className="abc" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-					<div className={`card-container-board ${dragSnapshot.isDragging && "border"}`}>
-						{open ? (
-							<TextareaAutosize
-								type="text"
-								className="card-input-title"
-								value={title}
-								onChange={(e) => setTitle(e.target.value)}
-								onBlur={handleOnBlur}
-								onKeyPress={(e) => {
-									if (e.key === "Enter") {
-										handleOnBlur();
-									}
-									return;
+				<div
+					className={`card-container-board ${dragSnapshot.isDragging && "border"}`}
+					ref={provided.innerRef}
+					{...provided.draggableProps}
+					{...provided.dragHandleProps}
+				>
+					{open ? (
+						<TextareaAutosize
+							type="text"
+							className="card-input-title"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							onBlur={handleOnBlur}
+							onKeyPress={(e) => {
+								if (e.key === "Enter") {
+									handleOnBlur();
+								}
+								return;
+							}}
+							autoFocus
+						/>
+					) : (
+						<div className="card-item" onClick={() => setOpen(!open)}>
+							<p className={`card-item-title ${dragSnapshot.isDragging && "border"}`}>{card.title}</p>
+							<button
+								className="card-item-button"
+								onClick={(e) => {
+									e.stopPropagation();
+									removeCard(projectId, column, card.id);
 								}}
-								autoFocus
-							/>
-						) : (
-							<div className="card-item" onClick={() => setOpen(!open)}>
-								<p className={`card-item-title ${dragSnapshot.isDragging && "border"}`}>{card.title}</p>
-								<button className="card-item-button" onClick={(e) => {
-									e.stopPropagation() 
-									console.log("clicked")
-									removeCard(projectId, column, card.id)}}>
-									<MdDelete />
-								</button>
-							</div>
-						)}
-					</div>
+							>
+								<MdDelete />
+							</button>
+						</div>
+					)}
 				</div>
 			)}
 		</Draggable>

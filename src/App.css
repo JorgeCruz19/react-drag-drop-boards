@@ -4,13 +4,14 @@
 .columns {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
-	column-gap: 1rem;
+	/* column-gap: 1rem; */
 	align-items: flex-start;
 	justify-content: flex-start;
 }
 .column {
 	margin-bottom: 1rem;
 	border-radius: 8px;
+	margin: 8px;
 	overflow: hidden;
 	/* padding: 0.6rem 1rem; */
 }
@@ -87,11 +88,11 @@
 	margin-bottom: 1rem;
 }
 .inner-card {
-	padding: 0.6rem;
+	padding-bottom: 8px;
 	min-height: 250px;
 }
-.abc{
-		margin-bottom: 1.4rem;
+.abc {
+	margin-bottom: 1.4rem;
 }
 .card-container-board {
 	-moz-user-select: none;
@@ -103,7 +104,7 @@
 	color: #091e42;
 	font-size: 1.1rem;
 	height: 100%;
-/* 	margin-bottom: 1.4rem; */
+	margin-bottom: 1rem;
 	/* min-height: 40px; */
 	/* padding: 8px; */
 	position: relative;
