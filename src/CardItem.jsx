@@ -17,7 +17,7 @@ const CardItem = ({ column, card, index }) => {
 	return (
 		<Draggable draggableId={card.id} index={index} shouldRespectForceTouch={false}>
 			{(provided, dragSnapshot) => (
-				<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+				<div className="abc" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
 					<div className={`card-container-board ${dragSnapshot.isDragging && "border"}`}>
 						{open ? (
 							<TextareaAutosize
@@ -37,7 +37,10 @@ const CardItem = ({ column, card, index }) => {
 						) : (
 							<div className="card-item" onClick={() => setOpen(!open)}>
 								<p className={`card-item-title ${dragSnapshot.isDragging && "border"}`}>{card.title}</p>
-								<button className="card-item-button" onClick={() => removeCard(projectId, column, card.id)}>
+								<button className="card-item-button" onClick={(e) => {
+									e.stopPropagation() 
+									console.log("clicked")
+									removeCard(projectId, column, card.id)}}>
 									<MdDelete />
 								</button>
 							</div>

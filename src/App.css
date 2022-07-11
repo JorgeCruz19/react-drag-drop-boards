@@ -90,6 +90,9 @@
 	padding: 0.6rem;
 	min-height: 250px;
 }
+.abc{
+		margin-bottom: 1.4rem;
+}
 .card-container-board {
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -100,7 +103,7 @@
 	color: #091e42;
 	font-size: 1.1rem;
 	height: 100%;
-	margin-bottom: 1.4rem;
+/* 	margin-bottom: 1.4rem; */
 	/* min-height: 40px; */
 	/* padding: 8px; */
 	position: relative;

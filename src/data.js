@@ -77,9 +77,8 @@ export const data = {
 	],
 };
 
-export const data2 = {
-	columns: [
-		{
+export const Boards = {
+		"column-1":{
 			id: "column-1",
 			title: "To do 📓",
 			cards: [
@@ -93,7 +92,7 @@ export const data2 = {
 				},
 			],
 		},
-		{
+		"column-2":{
 			id: "column-2",
 			title: "Progress 📚",
 			cards: [
@@ -107,7 +106,7 @@ export const data2 = {
 				},
 			],
 		},
-		{
+		"column-3":{
 			id: "column-3",
 			title: "Completed 🎉",
 			cards: [
@@ -121,5 +120,5 @@ export const data2 = {
 				},
 			],
 		},
-	],
+
 };
