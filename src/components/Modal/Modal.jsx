@@ -26,13 +26,13 @@ const Modal = ({ children, title, root }) => {
   const handleCloseModal = () => {
     document.body.style.overflow = "auto";
     document.body.style.overflow = "auto";
-    unmountComponentAtNode(root);
+    /* unmountComponentAtNode(root); */
     document.querySelector("#modal").remove();
   };
 
   return (
     <AnimatePresence>
-			<div className="modal">
+			<div className="modal" id="modal">
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}

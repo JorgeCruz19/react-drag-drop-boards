@@ -17,7 +17,7 @@ const openModalProject = (type, id) => {
 };
 
 const openModalBoard = (type, id) => {
-	const Modal = lazy(() => import("../pages/Board/BoardModal"));
+	/* const Modal = lazy(() => import("../pages/Board/BoardModal"));
 	document.body.style.overflow = "hidden";
 	const modalDiv = document.createElement("div");
 	modalDiv.id = "modal";
@@ -28,7 +28,7 @@ const openModalBoard = (type, id) => {
 			<Modal root={modalDiv} title={type == "card" ? "Add Card" : "Add Column"} type={type} id={id} />
 		</Suspense>,
 		modalDiv
-	);
+	); */
 };
 
 export { openModalProject, openModalBoard };

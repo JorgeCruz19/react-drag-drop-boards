@@ -20,8 +20,6 @@ let unsubscribe = null;
 const Board = () => {
   const { idBoard: projectId } = useParams();
   /* const [columns, setColumns] = useState({}); */
-  const [isLoading, setIsLoading] = useState(true);
-  const [ordered, setOrdered] = useState([]);
   const { columns, dispatch } = useColumnsContext();
 
   useEffect(() => {
@@ -47,7 +45,6 @@ const Board = () => {
       dispatch({ type: "SET_COLUMNS", payload: result });
       /* setOrdered(Object.keys(result)); */
     });
-    setIsLoading(false);
   }, []);
   const onDragEnd = async (result) => {
     const { destination, source, draggableId, type } = result;
@@ -65,6 +62,7 @@ const Board = () => {
 
     if (type === "COLUMN") {
       let columnsValues = Object.values(columns);
+      console.log(columnsValues);
       const orderedColumns = reorder(
         columnsValues,
         source.index,
@@ -82,7 +80,7 @@ const Board = () => {
         }),
         {}
       );
-      setColumns(result);
+      dispatch({ type: "SET_COLUMNS", payload: result });
 
       const newColumns = Object.values(columns);
       const destinationRef = doc(
@@ -116,7 +114,21 @@ const Board = () => {
       const destItems = [...destColumn.cards];
       const [removed] = sourceItems.splice(source.index, 1);
       destItems.splice(destination.index, 0, removed);
-      setColumns({
+      dispatch({
+        type: "SET_COLUMNS",
+        payload: {
+          ...columns,
+          [source.droppableId]: {
+            ...sourceColumn,
+            cards: sourceItems,
+          },
+          [destination.droppableId]: {
+            ...destColumn,
+            cards: destItems,
+          },
+        },
+      });
+      /* setColumns({
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
@@ -126,7 +138,7 @@ const Board = () => {
           ...destColumn,
           cards: destItems,
         },
-      });
+      }); */
       const newColumns = Object.values(columns);
       const sourceList = newColumns.find(
         (list) => list.id === source.droppableId
@@ -169,13 +181,23 @@ const Board = () => {
       const copiedItems = [...column.cards];
       const [removed] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
-      setColumns({
+      dispatch({
+        type: "SET_COLUMNS",
+        payload: {
+          ...columns,
+          [source.droppableId]: {
+            ...column,
+            cards: copiedItems,
+          },
+        },
+      });
+      /* setColumns({
         ...columns,
         [source.droppableId]: {
           ...column,
           cards: copiedItems,
         },
-      });
+      }); */
       const newColumns = Object.values(columns);
       const list = newColumns.find((list) => list.id === source.droppableId);
       const updatedCards = list.cards.map((card, index) => {
@@ -204,31 +226,23 @@ const Board = () => {
   return (
     <div className="App">
       <DragDropContext onDragEnd={onDragEnd}>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <Droppable droppableId="board" type="COLUMN" direction="horizontal">
-            {(provided) => (
-              <div
-                className="columns"
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {columns &&
-                  Object.keys(columns).map((column, index) => (
-                    <Column
-                      key={column}
-                      index={index}
-                      column={columns[column]}
-                    />
-                  ))}
+        <Droppable droppableId="board" type="COLUMN" direction="horizontal">
+          {(provided) => (
+            <div
+              className="columns"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {columns &&
+                Object.keys(columns).map((column, index) => (
+                  <Column key={column} index={index} column={columns[column]} />
+                ))}
 
-                {<AddButton type={"column"} />}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        )}
+              {<AddButton type={"column"} />}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
       </DragDropContext>
     </div>
   );
