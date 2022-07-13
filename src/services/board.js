@@ -26,9 +26,11 @@ const addColumn = async (title, projectId) => {
 		timestamp,
 	});
 };
+
 const deleteColumn = async (projectId, columnId) => {
 	await deleteDoc(doc(db, "projects", projectId, "board", columnId));
 };
+
 const updateColumnTitle = async (title, projectId, columnId) => {
 	const columnRef = doc(db, "projects", projectId, "board", columnId);
 	await updateDoc(columnRef, {
