@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { collection, doc, orderBy, query, updateDoc, getDocs } from "firebase/firestore";
 import { db } from "../../firebase.config";
-import Column from "../../Column";
+import Column from "../../components/Column/Column";
 import AddButton from "../../components/Boards/AddButton";
 import reorder from "../../reorder";
 import { useColumnsContext } from "../../hooks/useColumnsContext";
-
+import "./board.css";
 const Board = () => {
   const { idBoard: projectId } = useParams();
   const { columns, dispatch } = useColumnsContext();

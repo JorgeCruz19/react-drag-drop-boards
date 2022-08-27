@@ -1,6 +1,5 @@
 import { arrayUnion, collection, deleteDoc, doc, onSnapshot, orderBy, query, updateDoc, setDoc } from "firebase/firestore";
 import { db, timestamp } from "../firebase.config";
-import { v4 as uuidv4 } from "uuid";
 
 const getAllBoardOfProject = (projectId, setLists) => {
 	const q = query(collection(db, "projects", projectId, "board"), orderBy("timestamp", "asc"));

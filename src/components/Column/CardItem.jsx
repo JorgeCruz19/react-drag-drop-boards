@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { MdDelete } from "react-icons/md";
 import TextareaAutosize from "react-textarea-autosize";
-import { removeCard, updateCardTitle } from "./services/board";
-import { useColumnsContext } from "./hooks/useColumnsContext";
+import { removeCard, updateCardTitle } from "../../services/board";
+import { useColumnsContext } from "../../hooks/useColumnsContext";
 
 const CardItem = ({ column, card, index }) => {
   const projectId = window.location.pathname.split("/")[2];

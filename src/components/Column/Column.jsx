@@ -1,7 +1,7 @@
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import CardItem from "./CardItem";
-import AddButton from "./components/Boards/AddButton";
-import Title from "./components/Title/Title";
+import AddButton from "../Boards/AddButton";
+import Title from "../Title/Title";
 
 const Column = ({ column, columnId, index }) => {
 	return (
