@@ -3,15 +3,15 @@ import CardItem from "./CardItem";
 import AddButton from "./components/Boards/AddButton";
 import Title from "./components/Title/Title";
 
-const Column = ({ column, index }) => {
+const Column = ({ column, columnId, index }) => {
 	return (
-		<Draggable draggableId={column?.id} index={index}>
+		<Draggable draggableId={columnId} index={index}>
 			{(provided, snapshot) => (
 				<article className="column" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
 					<div className={`column-header ${snapshot.isDragging ? "is-active" : ""}`}>
-						<Title title={column.title} columnId={column.id} />
+						<Title title={column.title} columnId={columnId} />
 					</div>
-					<Droppable droppableId={column.id} type="CARD">
+					<Droppable droppableId={columnId} type="CARD">
 						{(dropProvided, dropSnapshot) => (
 							<div
 								ref={dropProvided.innerRef}
@@ -26,7 +26,7 @@ const Column = ({ column, index }) => {
 								}}
 							>
 								<div className="inner-card">
-									{column.cards.map((card, index) => (
+									{column?.cards?.map((card, index) => (
 										<CardItem key={card.id} card={card} column={column} index={index} />
 									))}
 

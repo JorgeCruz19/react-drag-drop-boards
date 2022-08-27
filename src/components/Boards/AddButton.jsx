@@ -17,7 +17,7 @@ const AddButton = ({ list, type }) => {
 				{type == "card" ? "Add another card" : "Add another column"}
 				<MdAdd />
 			</button>
-			{isOpen && (<BoardModal type={type} id={list?.id} />)}
+			{isOpen && (<BoardModal type={type} id={list?.id} setIsOpen={setIsOpen} />)}
 		</div>
 	);
 };

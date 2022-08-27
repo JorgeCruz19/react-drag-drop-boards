@@ -1,4 +1,4 @@
-import { addDoc, arrayUnion, collection, deleteDoc, doc, onSnapshot, orderBy, query, updateDoc } from "firebase/firestore";
+import { arrayUnion, collection, deleteDoc, doc, onSnapshot, orderBy, query, updateDoc, setDoc } from "firebase/firestore";
 import { db, timestamp } from "../firebase.config";
 import { v4 as uuidv4 } from "uuid";
 
@@ -16,11 +16,11 @@ const getAllBoardOfProject = (projectId, setLists) => {
 	});
 };
 
-const addColumn = async (title, projectId) => {
+const addColumn = async (title, projectId, id) => {
 	if (!title) {
 		return;
 	}
-	await addDoc(collection(db, "projects", projectId, "board"), {
+	await setDoc(doc(db, `projects/${projectId}/board`, id), {
 		title,
 		cards: [],
 		timestamp,
@@ -38,11 +38,11 @@ const updateColumnTitle = async (title, projectId, columnId) => {
 	});
 };
 
-const addCard = async (title, projectId, columnId) => {
+const addCard = async (title, projectId, columnId, cardId) => {
 	if (!title) return;
 
 	const card = {
-		id: uuidv4(),
+		id: cardId,
 		title,
 	};
 

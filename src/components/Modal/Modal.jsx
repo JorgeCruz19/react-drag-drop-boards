@@ -21,41 +21,38 @@ const dropIn = {
     opacity: 0,
   },
 };
-const Modal = ({ children, title, root }) => {
+const Modal = ({ children, title, root, setIsOpen }) => {
   const ref = useRef(null);
+
   const handleCloseModal = () => {
+    setIsOpen(false);
     document.body.style.overflow = "auto";
     document.body.style.overflow = "auto";
+    /* document.querySelector("#modal").remove(); */
     /* unmountComponentAtNode(root); */
-    document.querySelector("#modal").remove();
   };
 
   return (
     <AnimatePresence>
-			<div className="modal" id="modal">
-				<motion.div
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					ref={ref}
-					className="modal-container"
-					onClick={handleCloseModal}></motion.div>
-				<motion.div
-					variants={dropIn}
-					initial="hidden"
-					animate="visible"
-					exit="exit"
-					className="modal-inner-container"
-				>
-					<div className="modal-header">
-						<h3 className="modal-title">{title}</h3>
-						<button onClick={handleCloseModal} className="modal-close">
-							<MdOutlineClose />
-						</button>
-					</div>
-					<div className="modal-content">{children}</div>
-				</motion.div>
-			</div>
+      <div className="modal" id="modal">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          ref={ref}
+          className="modal-container"
+          onClick={handleCloseModal}
+        ></motion.div>
+        <motion.div variants={dropIn} initial="hidden" animate="visible" exit="exit" className="modal-inner-container">
+          <div className="modal-header">
+            <h3 className="modal-title">{title}</h3>
+            <button onClick={handleCloseModal} className="modal-close">
+              <MdOutlineClose />
+            </button>
+          </div>
+          <div className="modal-content">{children}</div>
+        </motion.div>
+      </div>
     </AnimatePresence>
   );
 };
