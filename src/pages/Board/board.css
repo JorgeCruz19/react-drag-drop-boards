@@ -12,7 +12,7 @@
 	margin-bottom: 1rem;
 	border-radius: 8px;
 	margin: 8px;
-	overflow: hidden;
+	/* overflow: hidden; */
 	/* padding: 0.6rem 1rem; */
 }
 .column-header {
@@ -165,18 +165,35 @@
 .card-input-title:focus {
 	border: 1px dashed #2f80ed;
 }
+
 .gray {
 	background-color: transparent;
 }
+
 .is-active {
 	background-color: rgb(227, 252, 239);
 }
+
 .is-draggingFrom {
-	background-color: rgb(230, 252, 255);
+	background-color: #dae4fd;
 }
+
 .is-draggingOver {
-	background-color: rgb(255, 235, 230);
+	background-color: #dae4fd;
+	border-radius: 12px;
 }
+
+.is-draggingOver::before {
+	border-radius: 12px;
+	border: 1px dashed #2f80ed;
+	content: "";
+	display: block;
+	height: 100%;
+	inset: 0;
+	position: absolute;
+	width: 99.99%;
+}
+
 .border {
 	border-color: #091e42;
 }

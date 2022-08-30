@@ -23,6 +23,8 @@ const Column = ({ column, columnId, index }) => {
 									backgroundColor: snapshot.isDragging ? "rgb(227, 252, 239)" : "",
 									padding: "0.6rem",
 									marginBottom: 10,
+									position: "relative",
+									borderRadius: "12px",
 								}}
 							>
 								<div className="inner-card">
