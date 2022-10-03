@@ -42,7 +42,6 @@ const CardItem = ({ column, card, index }) => {
 					{open ? (
 						<TextareaAutosize
 							type="text"
-							ref={textareaRef}
 							className="card-input-title"
 							value={title}
 							onFocus={handleFocus}
