@@ -1,5 +1,6 @@
 # "Tasky" Drag and Drop App 📕
 
+#### [Live preview ⏮️](https://deluxe-madeleine-3aaea6.netlify.app)
 ### Technologies:
 
 `HTML`
