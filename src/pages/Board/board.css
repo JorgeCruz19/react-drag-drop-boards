@@ -1,199 +1,205 @@
 .App {
-	padding: 1rem;
+  padding: 1rem;
 }
 .columns {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
-	/* column-gap: 1rem; */
-	align-items: flex-start;
-	justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+  /* column-gap: 1rem; */
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .column {
-	margin-bottom: 1rem;
-	border-radius: 8px;
-	margin: 8px;
-	/* overflow: hidden; */
-	/* padding: 0.6rem 1rem; */
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  margin: 8px;
+  /* overflow: hidden; */
+  /* padding: 0.6rem 1rem; */
 }
 .column-header {
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
-	transition: background-color 0.2s ease;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	font-size: 1.2rem;
-	padding: 0.6rem;
-	position: relative;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  padding: 0.6rem;
+  position: relative;
 }
 .column-title {
-	cursor: pointer;
-	font-size: 1.2rem;
-	height: 1.7rem;
-	text-align: left;
-	width: 100%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  height: 1.7rem;
+  text-align: left;
+  width: 100%;
 }
 .column-input-title {
-	border: none;
-	flex-grow: 1;
-	font-size: 1.2rem;
-	font-weight: 600;
-	height: 2.199rem;
-	outline: none;
-	width: 100%;
+  border: none;
+  flex-grow: 1;
+  font-size: 1.2rem;
+  font-weight: 600;
+  height: 2.199rem;
+  outline: none;
+  width: 100%;
 }
 .column-input-title:focus {
-	background: rgb(240, 234, 234);
-	border-radius: 8px;
+  background: rgb(240, 234, 234);
+  border-radius: 8px;
 }
 .column-list-button {
-	height: 1.5rem;
-	border: none;
-	cursor: pointer;
-	transition: background-color 0.2s;
+  height: 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 .column-list-button:hover {
-	background-color: #ddd;
+  background-color: #ddd;
 }
 .column-options {
-	font-size: 1.4rem;
-	cursor: pointer;
+  font-size: 1.4rem;
+  cursor: pointer;
 }
 .column-menu-card {
-	background-color: #fff;
-	border-radius: 8px;
-	box-shadow: 0 10px 15px -3px rgb(0 0 0/0.1), 0 4px 6px -4px rgb(0 0 0/0.1);
-	/* border: 1px solid #ddd; */
-	cursor: default;
-	list-style-type: none;
-	overflow: hidden;
-	position: absolute;
-	right: 0;
-	top: 0;
-	z-index: 999;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0/0.1), 0 4px 6px -4px rgb(0 0 0/0.1);
+  /* border: 1px solid #ddd; */
+  cursor: default;
+  list-style-type: none;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 999;
 }
 .column-menu-card li {
-	color: #333;
-	font-size: 0.875rem;
-	padding: 0.5rem 0.5rem 0.3rem;
+  color: #333;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.5rem 0.3rem;
 }
 .column-menu-card li:first-child {
-	border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 .column-menu-card li:hover {
-	background-color: #ddd;
+  background-color: #ddd;
 }
 .card-list {
-	padding-bottom: 8px;
-	margin-bottom: 1rem;
+  padding-bottom: 8px;
+  margin-bottom: 1rem;
 }
 .inner-card {
-	padding-bottom: 8px;
-	min-height: 250px;
+  padding-bottom: 8px;
+  min-height: 250px;
 }
 .abc {
-	margin-bottom: 1.4rem;
+  margin-bottom: 1.4rem;
 }
 .card-container-board {
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-webkit-user-select: none;
-	background-color: #ffffff;
-	border-radius: 12px;
-	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
-	color: #091e42;
-	font-size: 1.1rem;
-	height: 100%;
-	margin-bottom: 1rem;
-	/* min-height: 40px; */
-	/* padding: 8px; */
-	position: relative;
-	transition: background-color 0.1s;
-	user-select: none;
-	width: 100%;
-	display: flex;
-	align-items: center;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  color: #091e42;
+  font-size: 1.1rem;
+  height: 100%;
+  margin-bottom: 1rem;
+  /* min-height: 40px; */
+  /* padding: 8px; */
+  position: relative;
+  transition: background-color 0.1s;
+  user-select: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 .card-container-board:hover svg {
-	opacity: 1;
+  opacity: 1;
 }
 .card-item {
-	align-items: center;
-	display: flex;
-	justify-content: space-between;
-	height: 100%;
-	padding: 0.5rem 8px;
-	width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0.5rem 8px;
+  width: 100%;
 }
 
 .card-item-title {
-	max-width: 90%;
-	overflow: hidden;
-	word-wrap: break-word;
+  max-width: 90%;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 .card-item-button {
-	background: none;
-	border-radius: 50%;
-	border: none;
-	cursor: pointer;
-	height: 100%;
+  background: none;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  height: 100%;
 }
 .card-item-button svg {
-	fill: crimson;
-	font-size: 1.2rem;
-	opacity: 0;
-	transition: fill 0.2s, opacity 0.2s;
+  fill: crimson;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: fill 0.2s, opacity 0.2s;
 }
 .card-item-button svg:hover {
-	fill: rgba(220, 20, 60, 0.839);
+  fill: rgba(220, 20, 60, 0.839);
 }
 .card-input-title {
-	border-color: transparent;
-	outline: none;
-	height: 100%;
-	overflow: hidden;
-	resize: none;
-	transition: border-color 0.2s;
-	width: 100%;
-	font-size: 1.1rem;
-	border-radius: 12px;
-	padding: 0.5rem 8px;
-	font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-		"Helvetica Neue", sans-serif;
+  border-color: transparent;
+  outline: none;
+  height: 100%;
+  overflow: hidden;
+  resize: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  padding: 0.5rem 8px;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
 }
 
 .card-input-title:focus {
-	border: 1px dashed #2f80ed;
+  border: 1px dashed #2f80ed;
 }
 
 .gray {
-	background-color: transparent;
+  background-color: transparent;
 }
 
 .is-active {
-	background-color: rgb(227, 252, 239);
+  background-color: rgb(227, 252, 239);
 }
 
 .is-draggingFrom {
-	background-color: #dae4fd;
+  background-color: #dae4fd;
 }
 
 .is-draggingOver {
-	background-color: #dae4fd;
-	border-radius: 12px;
+  background-color: #dae4fd;
+  border-radius: 12px;
 }
 
 .is-draggingOver::before {
-	border-radius: 12px;
-	border: 1px dashed #2f80ed;
-	content: "";
-	display: block;
-	height: 100%;
-	inset: 0;
-	position: absolute;
-	width: 99.99%;
+  border-radius: 12px;
+  border: 1px dashed #2f80ed;
+  content: "";
+  display: block;
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 99.99%;
 }
 
 .border {
-	border-color: #091e42;
+  border-color: #091e42;
+}
+
+@media screen and (max-width: 768px) {
+  .columns {
+    justify-content: center;
+  }
 }

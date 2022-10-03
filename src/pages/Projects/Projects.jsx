@@ -8,6 +8,7 @@ import { getAllProjects, deleteProject } from "../../services/projects";
 import Tooltip from "../../components/Tooltip/Tooltip";
 
 import "./projects.css";
+import ProjectModal from "./ProjectModal";
 
 const Projects = () => {
   const [boards, setBoards] = useState([]);
@@ -23,15 +24,23 @@ const Projects = () => {
     };
   }, []);
 
+  const [isOpen, setIsOpen] = useState({
+    type: "",
+    id: "",
+    isOpen: false,
+  });
+
+
   const handleOpenModal = (type, id) => {
-    openModalProject(type, id);
+    /* openModalProject(type, id); */
+    setIsOpen({type, id, isOpen: true})
   };
 
   return (
     <>
       <div className="project-container">
         <h1 className="project-title">Projects boards</h1>
-        <button onClick={() => handleOpenModal(false)} className="project-add">
+        <button onClick={() => handleOpenModal("add","")} className="project-add">
           <MdAddBox />
         </button>
       </div>
@@ -61,6 +70,7 @@ const Projects = () => {
           </div>
         ))}
       </div>
+      {isOpen.isOpen && (<ProjectModal title={isOpen.type == "add" ? "Add project" : "Edit project"} type={isOpen.type} id={isOpen.id} setIsOpen={setIsOpen} />)}
     </>
   );
 };
